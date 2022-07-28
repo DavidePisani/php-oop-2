@@ -31,6 +31,8 @@ class Utente {
 
         return $totaleCarrello;
     }
+
+    
 }
 
 ?>
