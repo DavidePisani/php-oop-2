@@ -16,7 +16,7 @@ require_once __DIR__ . '/UtenteRegistrato.php';
 $croccantini = new Cibo('Croccantini', 'Oasy', 15, 'Gatto');
 // var_dump($croccantini);
 
-$seresto = new Antiparassitari('Collarino', 'Elanco', 35, 'Cane');
+$seresto = new Antiparassitari('Collarino Antiparassitario', 'Elanco', 35, 'Cane');
 // var_dump($seresto);
 
 $cuccia = new Accessori('Cuccia', 'Camon', 27);
