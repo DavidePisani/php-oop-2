@@ -10,24 +10,30 @@ require_once __DIR__ . '/Antiparassitari.php';
 require_once __DIR__ . '/Accessori.php';
 require_once __DIR__ . '/UtenteNonRegistrato.php';
 require_once __DIR__ . '/UtenteRegistrato.php';
-
+require_once __DIR__ . '/CartaUtente.php';
 
 
 $croccantini = new Cibo('Croccantini', 'Oasy', 15, 'Gatto');
-// var_dump($croccantini);
+$croccantini->codiceProdotto = 'Osy337';
+var_dump($croccantini);
 
 $seresto = new Antiparassitari('Collarino Antiparassitario', 'Elanco', 35, 'Cane');
-// var_dump($seresto);
+$seresto->codiceProdotto = 'Sr034';
+var_dump($seresto);
 
 $cuccia = new Accessori('Cuccia', 'Camon', 27);
-// var_dump($cuccia);
+var_dump($cuccia);
 
-$davide_pisani = new UtenteRegistrato('Davide Pisani', 'davide.pisani@mail.it');
+$davide_pisani = new UtenteNonRegistrato('Davide Pisani', 'davide.pisani@mail.it');
 $davide_pisani->setPordottoCarrello($croccantini);
 $davide_pisani->setPordottoCarrello($seresto);
 $davide_pisani->prezzoCarrello();
-// var_dump($davide_pisani);
-// var_dump($davide_pisani->prezzoCarrello());
+
+$cartaUtente = new CartaUtente('Davide Pisani', '5987648523649855', '03/25', '598');
+$cartaUtente->saldo = 3500;
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +50,23 @@ $davide_pisani->prezzoCarrello();
          <?php foreach ($davide_pisani->getPordottoCarrello() as $prodotti) {  ?>
             <div> Tipo: <?php echo $prodotti-> tipo  ?></div>
             <div> Marca: <?php echo $prodotti-> marca  ?></div>
-            <div> Prezzo: <?php echo $prodotti-> prezzo?>Euro</div>
+            <div> Prezzo: <?php echo $prodotti-> prezzo?> Euro</div>
             <div> Per: <?php echo $prodotti -> tipoAnimale  ?></div>
         <?php }?> 
-        <h2> Totale Carrello: <?php echo $davide_pisani->prezzoCarrello()?></h2>
+        <h2> Totale Carrello: <?php echo $davide_pisani->prezzoCarrello()?> Euro</h2>
+
+        <?php
+            try {
+                if($davide_pisani->effettuaPagamento($cartaUtente) === 'eseguito') {
+                    echo "<h2>Pagamento andato a buon fine, Arrivederci</h2>";
+                }
+            } catch(Exception $message) {
+               
+                error_log($message->getMessage());
+            
+                echo "<h3>Pagamento rifiutato, controllare saldo e riprovare, Grazie =)</h3>";
+            }
+        ?>
            
             
     </div>

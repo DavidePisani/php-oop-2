@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/CodiciProdotti.php';
 class ProdottoAnimali {
     public $tipo;
 
@@ -13,8 +13,6 @@ class ProdottoAnimali {
         $this->marca = $_marca;
         $this->prezzo = $_prezzo;
     }
-
-   
 }
 
 ?>

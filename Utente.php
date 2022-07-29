@@ -32,7 +32,16 @@ class Utente {
         return $totaleCarrello;
     }
 
-    
+    public function effettuaPagamento($cartaUtente) {
+        $totaleCarrello = $this->prezzoCarrello();
+
+        if($cartaUtente->saldo < $totaleCarrello) {
+            throw new Exception("Utente: $this->nome: Saldo non disponibile");
+        } else {
+            return 'eseguito';
+        }
+    }
 }
+
 
 ?>
