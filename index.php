@@ -22,7 +22,7 @@ $seresto = new Antiparassitari('Collarino Antiparassitario', 'Elanco', 35, 'Cane
 $cuccia = new Accessori('Cuccia', 'Camon', 27);
 // var_dump($cuccia);
 
-$davide_pisani = new UtenteNonRegistrato('Davide Pisani', 'davide.pisani@mail.it');
+$davide_pisani = new UtenteRegistrato('Davide Pisani', 'davide.pisani@mail.it');
 $davide_pisani->setPordottoCarrello($croccantini);
 $davide_pisani->setPordottoCarrello($seresto);
 $davide_pisani->prezzoCarrello();
